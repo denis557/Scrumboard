@@ -1,0 +1,18 @@
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.page {
+    flex: 1;
+    background-color: #F5F5F5;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex: 1;
+}

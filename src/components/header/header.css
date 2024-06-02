@@ -1,0 +1,29 @@
+.header {
+    background-color: #fff;
+    width: 100%;
+    height: 6.88vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+.search {
+    height: 71.4%;
+    width: 14.22%;
+    padding: 0 0.36% 0 0.52%;
+    background-color: transparent;
+    border: solid 1px #DBDBDB;
+    border-radius: 5px;
+    margin-left: 17.7%;
+    outline: none;
+    font-size: 26px;
+    font-weight: 300;
+    background-image: url('../../assets/header/search.svg');
+    background-position: right;
+    background-repeat: no-repeat;  
+}
+
+.avatar {
+    align-items: center; 
+    justify-content: flex-end;
+    margin-right: 0.52%;
+}
