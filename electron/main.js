@@ -15,6 +15,7 @@ const createWindow = () => {
     },
   });
   // mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  // mainWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#/login`);
   mainWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#/scrumboard`);
   mainWindow.setMenuBarVisibility(false);
   mainWindow.maximize();

@@ -1,0 +1,128 @@
+.board_body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 6.882989vh 3.64583vw;
+    gap: 3.64583vw;
+}
+
+.block {
+    width: 18.75vw;
+    height: fit-content;
+    background-color: transparent;
+}
+
+.block_header {
+    /* width: 100%; */
+    width: 91.111146%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.25vw;
+    align-items: center;
+    padding: 0 0.52083vw 0 1.14583vw;
+}
+
+.block_header_p {
+    flex-grow: 1;
+}
+
+.add_task {
+    margin-right: 0.260416vw;
+}
+
+.block hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: black;
+}
+
+.add_block {
+    width: 8.85416vw;
+    height: 5.899705vh;
+    background-color: #F1F1F1;
+    border: none;
+    border-radius: 0.20833vw;
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.0416vw;
+    cursor: pointer;
+}
+
+.add_block_svg {
+    margin: 0 0.26041vw;
+}
+
+.svg_40 {
+    width: 2.08333vw;
+    height: 3.933136vh;
+}
+
+.task_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task {
+    width: 94.444%;
+    height: 9.8328vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.949852vh;
+    background-color: #fff;
+    border-radius: 0.260416vw;
+    cursor: pointer;
+}
+
+.task_header {
+    width: 94.705884%;
+    height: 40%;
+    padding: 0 2.647058%;
+    margin: 3px 0 4px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task_header p {
+    font-size: 1.25vw;
+    flex-grow: 1;
+}
+
+.task_header svg {
+    align-self: flex-end;
+}
+
+.task hr {
+    background-color: #9C9C9C;
+    border: none;
+    height: 1px;
+    width: 88.23529%;
+}
+
+.task_time {
+    align-self: flex-end;
+    width: fit-content;
+    padding: 0 0.520833vw 0 0.26041666vw;
+    margin: 0.884955vh 0.46875vw 0 0;
+    height: 30%;
+    border-radius: 0.15625vw;
+    border: 1px solid #0057FF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task_time p {
+    font-size: 0.8333vw;
+    color: #0057FF;
+    margin-left: 0.2vw;
+}

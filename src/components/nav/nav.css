@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: column;
     background-color: #EDEDED;
+    overflow-y: auto;
 }
 
 .nav_button {
@@ -16,29 +17,32 @@
     display: flex;
     align-items: center;
     background-color: transparent;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    border-radius: 0.26041vw;
     margin-top: 1px;
     cursor: pointer;
     transition: all 0.3s;
-    text-decoration: none;
-}
-
-.nav_button_title {
-    font-size: 24px;
-    font-weight: 300;
-    margin-left: 6.89%;
-    width: fit-content;
-    user-select: none;
     color: black;
     text-decoration: none;
 }
 
-.team_title {
-    font-size: 20px;
+.nav_button_title {
+    /* font-size: 24px; */
+    font-size: 1.25vw;
     font-weight: 300;
     margin-left: 6.89%;
     width: fit-content;
     user-select: none;
+}
+
+.team_title {
+    /* font-size: 20px; */
+    font-size: 1.0416vw;
+    font-weight: 300;
+    margin-left: 6.89%;
+    width: fit-content;
+    user-select: none;
+    text-decoration: none;
 }
 
 .nav_button:hover {
@@ -64,9 +68,63 @@
     border-top: 1px solid #6C6C6C;
     width: 76.6%;
     color: black;
-    margin: 1.96vh 0
+    margin: 1.96vh 0;
 }
 
 .nav_button_right {
     margin-left: auto;
+}
+
+.svg_24 {
+    width: 1.25vw;
+    height: 1.25vw;
+}
+
+.svg_44 {
+    width: 2.2916vw;
+    height: 2.2916vw;
+}
+
+.svg_46 {
+    width: 2.39583vw;
+    height: 2.39583vw;
+}
+
+.add_join_team_buttons {
+    /* justify-content: space-around; */
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+.add_join_team_buttons:hover {
+    background-color: transparent;
+}
+
+.team_button {
+    /* width: 43.333%; */
+    /* width: 6.77083vw; */
+    width: 6.3vw;
+    height: 4.91642vh;
+    border: 1px solid #0057FF;
+    outline: none;
+    background-color: transparent;
+    border-radius: 0.20833vw;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.0416vw;
+    color: #0057FF;
+    align-items: center;
+    cursor: pointer;
+}
+
+.team_button svg {
+    margin-left: 0.260416vw;
+}
+
+.create_team_btn_p {
+    margin-left: 0.2vw;
+}
+
+.join_team_btn_p {
+    margin-left: 0.78125vw;
 }

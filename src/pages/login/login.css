@@ -1,0 +1,108 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bodyLogin {
+    background-color: #F8F8F8;
+    width: 41.6vw;
+    height: 49.1vh;
+    max-height: 690px;
+    /* border-radius: 10px; */
+    border-radius: 0.52083vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.titleLogin {
+    /* font-size: 64px; */
+    font-size: 3.33vw;
+    /* margin: 26px auto 40px; */
+    margin: 1.35416vw auto 2.083vw;
+    font-weight: 200;
+}
+
+.passwordLogin {
+    width: 83.75%;
+    height: 16%;
+    padding: 0 1.875%;
+    /* margin: 0 auto 40px; */
+    margin: 0 auto 2.083vw;
+    /* border-radius: 5px; */
+    border-radius: 0.260416vw;
+    border: 1px solid #DBDBDB;
+    display: flex;
+    align-items: center;
+}
+
+.inputPasswordLogin {
+    width: 89%;
+    height: 100%;
+    outline: none;
+    border: none;
+    /* font-size: 48px; */
+    font-size: 2.5vw;
+    font-weight: 300;
+    background-color: transparent;
+}
+
+.inputLogin {
+    background-color: transparent;
+    width: 83.75%;
+    height: 16%;
+    /* margin: 0 auto 40px; */
+    margin: 0 auto 2.083vw;
+    outline: none;
+    /* border-radius: 5px; */
+    border-radius: 0.260416vw;
+    border: 1px solid #DBDBDB;
+    /* font-size: 48px; */
+    font-size: 2.5vw;
+    font-weight: 300;
+    padding: 0 1.875%;
+}
+
+.submitLogin {
+    /* font-size: 48px; */
+    font-size: 2.5vw;
+    color: white;
+    background-color: #0057FF;
+    /* border-radius: 5px; */
+    border-radius: 0.260416vw;
+    outline: none;
+    /* margin: 0 auto 40px; */
+    margin: 0 auto 2.083vw;
+    font-weight: 300;
+    border: none;
+    width: 43.75%;
+    height: 16%;
+}
+
+.link {
+    color: #0057FF;
+    user-select: none;
+    text-decoration: none;
+    font-weight: 300;
+    /* font-size: 36px; */
+    font-size: 1.875vw;
+}
+
+.error {
+    /* font-size: 20px; */
+    font-size: 1.0416vw;
+    font-weight: 400;
+    /* margin: 0 auto 20px; */
+    margin: 0 auto 1.0416vw;
+    color: red;
+}
+
+.svg_70_65 {
+    width: 3.64583vw;
+    height: 3.385416vw;
+}

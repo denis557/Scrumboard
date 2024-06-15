@@ -1,0 +1,131 @@
+.profile-body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0%;
+}
+
+.profile {
+    height: 100%;
+    width: 41.6666%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.profile-header {
+    height: 7.4vh;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.profile-main {
+    background-color: #F5F5F5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-user-info {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3.5%;
+}
+
+.profile-avatar {
+    /* width: 12.5%;
+    height: 52.6%; */
+    width: 5.2083vw;
+    height: 5.2083vw;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    /* font-size: 70px; */
+    font-size: 3.64583vw;
+}
+
+.profile-user-info h3 {
+    /* font-size: 48px; */
+    font-size: 2.5vw;
+    font-weight: 400;
+    margin: 0 4.25% 0 2%;
+}
+
+.profile-status {
+    /* width: 21.25%;
+    height: 28.94%; */
+    width: fit-content;
+    border: 1px solid #9C9C9C;
+    background-color: transparent;
+    color: #9C9C9C;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border-radius: 3px; */
+    border-radius: 0.15625vw;
+}
+
+.profile-status p {
+    /* font-size: 34px; */
+    font-size: 1.77083vw;
+    width: fit-content;
+    margin-right: 8px;
+}
+
+.profile-email {
+    /* font-size: 40px; */
+    font-size: 2.083vw;
+    margin-left: 3.5%;
+    flex-grow: 1;
+}
+
+.profile-delete-friend {
+    width: 31.25%;
+    height: 6.88vh;
+    background-color: transparent;
+    /* border-radius: 3px; */
+    border-radius: 0.15625vw;
+    border: 1px solid #FF2E2E;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #FF2E2E;
+    /* font-size: 28px; */
+    font-size: 1.4583vw;
+    /* margin: auto 0 30px 40px; */
+    margin: auto 0 2.777vh 2.083vw;
+    cursor: pointer;
+}
+
+.profile-delete-friend svg {
+    margin: 0 2%;
+}
+
+.svg_55 {
+    width: 2.864583vw;
+    height: 2.864583vw;
+}
+
+.svg_60 {
+    width: 3.125vw;
+    height: 3.125vw;
+}

@@ -6,7 +6,8 @@ const taskSchema = ({
     description: { type: String },
     date: { type: Date, default: new Date().toJSON() },
     block: { type: String, default: "TODO" },
-    completed: { type: Boolean, default: false }
+    completed: { type: Boolean, default: false },
+    creator: { type: String }
 });
 
 module.exports = mongoose.model('Task', taskSchema)
