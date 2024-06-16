@@ -1,0 +1,61 @@
+.allMembers {
+    width: 42.29168vw;
+    height: 55.06393vh;
+    padding: 1.966568vh 2.29166vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.966568vh;
+    background-color: #fff;
+    border-radius: 0.260416vw;
+    position: fixed;
+}
+
+.board_id {
+    font-size: 1.66666vw;
+    font-weight: 400;
+    align-self: flex-start;
+}
+
+.members_div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.966568vh;
+}
+
+.member {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.member_avatar {
+    border-radius: 100%;
+    width: 2.60416vw;
+    height: 2.60416vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.875vw;
+    font-weight: 400;
+}
+
+.member_name {
+    font-size: 1.875vw;
+    margin: 0 0.46875vw 0 1.04166vw;
+    flex-grow: 1;
+}
+
+/* .member svg {
+    align-self: flex-end;
+} */
+
+.members_div hr {
+    height: 1px;
+    border: none;
+    background-color: black;
+    width: 100%;
+}

@@ -1,0 +1,9 @@
+.addBlock_modal {
+    width: 36.4583vw;
+    height: 34.4149vh;
+    max-height: 420px;
+    background-color: #fff;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}

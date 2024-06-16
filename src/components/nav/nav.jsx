@@ -4,15 +4,57 @@ import './nav.css';
 import { TeamContext } from '../../contexts/teamsContext.jsx';
 import TeamContextMenu from '../contextMenus/teamContextMenu/teamContextMenu.jsx';
 import { UserContext } from '../../contexts/userContext.jsx';
+import AllMembersPopup from '../../components/modals/allMembers/allMembers.jsx';
 import axiosInstance from '../../helpers/axiosInstance.js';
 
-function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal }) {
+function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, getTeamInfo }) {
     const [isTeamOpened, setIsTeamOpened] = useState(false);
     const [selectedTeamId, setSelectedTeamId] = useState('myBoard');
     const { teamsInfo, setTeamsInfo } = useContext(TeamContext);
     const { userInfo, setUserInfo } = useContext(UserContext);
+    const [isAllMembers, setIsAllMembers] = useState(false);
+    const [boardId, setBoardId] = useState(null);
+    const [teamMembersInfo, setTeamMembersInfo] = useState([]);
+    const [inputTeamId, setInputTeamId] = useState(null);
+    const [teamTitle, setTeamTitle] = useState('');
 
-    // let currentBoard = 'myBoard';
+    const getAllMembers = async (clickedTeamId) => {
+        try {
+            const response = await axiosInstance.get('/get-all-members/' + clickedTeamId);
+            if(response.data && response.data.membersInfo) {
+                setTeamMembersInfo(response.data.membersInfo);
+                console.log(response.data.membersInfo);
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    const deleteBoard = async (clickedTeamId) => {
+        try {
+            const response = await axiosInstance.delete('/delete-board/' + clickedTeamId);
+            getTeamInfo();
+            resetTeamContext();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const changeTeamTitle = async (clickedTeamId) => {
+        try {
+            const response = await axiosInstance.put('/edit-board/' + clickedTeamId, {
+                name: teamTitle
+            });
+            getTeamInfo();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const toggleIsAllMembers = () => {
+        setIsAllMembers(!isAllMembers);
+        resetTeamContext();
+    };
 
     const teamContextRef = useRef(null);
     const [teamContextMenu, setTeamContextMenu] = useState({
@@ -62,25 +104,25 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal }) 
             currentBoard.role !== 'member' && {
                 text: 'Change name',
                 svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.862 4.487L18.549 2.799C18.9007 2.44733 19.3777 2.24976 19.875 2.24976C20.3723 2.24976 20.8493 2.44733 21.201 2.799C21.5527 3.15068 21.7502 3.62766 21.7502 4.125C21.7502 4.62235 21.5527 5.09933 21.201 5.451L6.832 19.82C6.30332 20.3484 5.65137 20.7367 4.935 20.95L2.25 21.75L3.05 19.065C3.26328 18.3486 3.65163 17.6967 4.18 17.168L16.863 4.487H16.862ZM16.862 4.487L19.5 7.125" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>,
-                onClick: () => console.log("change name"),
+                onClick: () => {toggleIsInput(teamContextMenu.clickedTeam._id); resetTeamContext(); setBoardId(teamContextMenu.clickedTeam._id)},
                 color: 'black'
             },
             {
                 text: 'Members',
                 svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M15.75 6C15.75 6.99456 15.3549 7.94839 14.6516 8.65165C13.9484 9.35491 12.9945 9.75 12 9.75C11.0054 9.75 10.0516 9.35491 9.34833 8.65165C8.64506 7.94839 8.24998 6.99456 8.24998 6C8.24998 5.00544 8.64506 4.05161 9.34833 3.34835C10.0516 2.64509 11.0054 2.25 12 2.25C12.9945 2.25 13.9484 2.64509 14.6516 3.34835C15.3549 4.05161 15.75 5.00544 15.75 6ZM4.50098 20.118C4.53311 18.1504 5.33731 16.2742 6.74015 14.894C8.14299 13.5139 10.0321 12.7405 12 12.7405C13.9679 12.7405 15.857 13.5139 17.2598 14.894C18.6626 16.2742 19.4668 18.1504 19.499 20.118C17.1464 21.1968 14.5881 21.7535 12 21.75C9.32398 21.75 6.78398 21.166 4.50098 20.118Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>,
-                onClick: () => console.log("members"),
+                onClick: () => {getAllMembers(teamContextMenu.clickedTeam._id); toggleIsAllMembers(); setBoardId(teamContextMenu.clickedTeam._id)},
                 color: 'black'
             },
-            {
+            currentBoard.role == 'member' && {
                 text: 'Leave board',
                 svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M8.25 9V5.25C8.25 4.65326 8.48705 4.08097 8.90901 3.65901C9.33097 3.23705 9.90326 3 10.5 3H16.5C17.0967 3 17.669 3.23705 18.091 3.65901C18.5129 4.08097 18.75 4.65326 18.75 5.25V18.75C18.75 19.3467 18.5129 19.919 18.091 20.341C17.669 20.7629 17.0967 21 16.5 21H10.5C9.90326 21 9.33097 20.7629 8.90901 20.341C8.48705 19.919 8.25 19.3467 8.25 18.75V15M5.25 15L2.25 12M2.25 12L5.25 9M2.25 12H15" stroke="#FF2E2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>,
                 onClick: () => console.log("leave"),
                 color: 'red'
             },
-            currentBoard.role !== 'member' && {
+            currentBoard.role == 'creator' && {
                 text: 'Delete board',
                 svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M14.74 9.00003L14.394 18M9.606 18L9.26 9.00003M19.228 5.79003C19.57 5.84203 19.91 5.89703 20.25 5.95603M19.228 5.79003L18.16 19.673C18.1164 20.2383 17.8611 20.7662 17.445 21.1513C17.029 21.5364 16.4829 21.7502 15.916 21.75H8.084C7.5171 21.7502 6.97102 21.5364 6.55498 21.1513C6.13894 20.7662 5.88359 20.2383 5.84 19.673L4.772 5.79003M19.228 5.79003C18.0739 5.61555 16.9138 5.48313 15.75 5.39303M4.772 5.79003C4.43 5.84103 4.09 5.89603 3.75 5.95503M4.772 5.79003C5.92613 5.61555 7.08623 5.48313 8.25 5.39303M15.75 5.39303V4.47703C15.75 3.29703 14.84 2.31303 13.66 2.27603C12.5536 2.24067 11.4464 2.24067 10.34 2.27603C9.16 2.31303 8.25 3.29803 8.25 4.47703V5.39303M15.75 5.39303C13.2537 5.20011 10.7463 5.20011 8.25 5.39303" stroke="#FF2E2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>,
-                onClick: () => console.log("delete"),
+                onClick: () => deleteBoard(teamContextMenu.clickedTeam._id),
                 color: 'red'
             }
         ];
@@ -121,6 +163,38 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal }) 
         setSelectedTeamId(teamId);
     }
 
+    const toggleIsInput = (teamId) => {
+        if (inputTeamId === teamId) {
+            setInputTeamId(null);
+        } else {
+            setInputTeamId(teamId);
+            setTeamTitle(teamContextMenu.clickedTeam.name)
+        }
+    }
+
+    const handleTitleInput = (e) => {
+        if(e.key === 'Enter') {
+            changeTeamTitle(boardId);
+            setInputTeamId(null);
+        } else if (e.key === 'Escape') {
+            setInputTeamId(null);
+            setTeamTitle('')
+        }
+    }
+
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (inputTeamId && !e.target.closest('.team_title_input')) {
+                setInputTeamId(null);
+                setTeamTitle('')
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [inputTeamId]);
+
     return (
         <div className="nav">
             <Link to='/scrumboard' className={`nav_button ${page == 'scrumboard' && 'selected'}`}>
@@ -150,13 +224,12 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal }) 
                     <>
                         <div className={`nav_button ${selectedTeamId == 'board' ? 'selected' : ''}`} onClick={() => toggleSelectedTeam('board')}>
                             <p className='team_title'>My board</p>
-                            {/* <svg className='nav_button_right svg_44' width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M12.375 22C12.375 22.3647 12.2301 22.7144 11.9723 22.9723C11.7144 23.2301 11.3647 23.375 11 23.375C10.6353 23.375 10.2856 23.2301 10.0277 22.9723C9.76987 22.7144 9.625 22.3647 9.625 22C9.625 21.6353 9.76987 21.2856 10.0277 21.0277C10.2856 20.7699 10.6353 20.625 11 20.625C11.3647 20.625 11.7144 20.7699 11.9723 21.0277C12.2301 21.2856 12.375 21.6353 12.375 22ZM23.375 22C23.375 22.3647 23.2301 22.7144 22.9723 22.9723C22.7144 23.2301 22.3647 23.375 22 23.375C21.6353 23.375 21.2856 23.2301 21.0277 22.9723C20.7699 22.7144 20.625 22.3647 20.625 22C20.625 21.6353 20.7699 21.2856 21.0277 21.0277C21.2856 20.7699 21.6353 20.625 22 20.625C22.3647 20.625 22.7144 20.7699 22.9723 21.0277C23.2301 21.2856 23.375 21.6353 23.375 22ZM34.375 22C34.375 22.3647 34.2301 22.7144 33.9723 22.9723C33.7144 23.2301 33.3647 23.375 33 23.375C32.6353 23.375 32.2856 23.2301 32.0277 22.9723C31.7699 22.7144 31.625 22.3647 31.625 22C31.625 21.6353 31.7699 21.2856 32.0277 21.0277C32.2856 20.7699 32.6353 20.625 33 20.625C33.3647 20.625 33.7144 20.7699 33.9723 21.0277C34.2301 21.2856 34.375 21.6353 34.375 22Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg> */}
                         </div>
                         {teamsInfo ?
                             (teamsInfo.map(team => 
                             <Link className={`nav_button ${selectedTeamId == team._id ? 'selected' : ''}`} key={team._id} to={`/scrumboard/${team._id}`} onContextMenu={(e) => handleTeamContext(e, team)} onClick={() => toggleSelectedTeam(team._id)}>
-                                <p className='team_title'>{team.name}</p>
-                                {/* <svg onClick={(e) => handleTeamContext(e, team)} className='nav_button_right svg_44' width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M12.375 22C12.375 22.3647 12.2301 22.7144 11.9723 22.9723C11.7144 23.2301 11.3647 23.375 11 23.375C10.6353 23.375 10.2856 23.2301 10.0277 22.9723C9.76987 22.7144 9.625 22.3647 9.625 22C9.625 21.6353 9.76987 21.2856 10.0277 21.0277C10.2856 20.7699 10.6353 20.625 11 20.625C11.3647 20.625 11.7144 20.7699 11.9723 21.0277C12.2301 21.2856 12.375 21.6353 12.375 22ZM23.375 22C23.375 22.3647 23.2301 22.7144 22.9723 22.9723C22.7144 23.2301 22.3647 23.375 22 23.375C21.6353 23.375 21.2856 23.2301 21.0277 22.9723C20.7699 22.7144 20.625 22.3647 20.625 22C20.625 21.6353 20.7699 21.2856 21.0277 21.0277C21.2856 20.7699 21.6353 20.625 22 20.625C22.3647 20.625 22.7144 20.7699 22.9723 21.0277C23.2301 21.2856 23.375 21.6353 23.375 22ZM34.375 22C34.375 22.3647 34.2301 22.7144 33.9723 22.9723C33.7144 23.2301 33.3647 23.375 33 23.375C32.6353 23.375 32.2856 23.2301 32.0277 22.9723C31.7699 22.7144 31.625 22.3647 31.625 22C31.625 21.6353 31.7699 21.2856 32.0277 21.0277C32.2856 20.7699 32.6353 20.625 33 20.625C33.3647 20.625 33.7144 20.7699 33.9723 21.0277C34.2301 21.2856 34.375 21.6353 34.375 22Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg> */}
+                                {/* {isInput ? <input value={team.name} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{team.name}</p>} */}
+                                {inputTeamId === team._id ? <input value={teamTitle} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{team.name}</p>}
                             </Link>
                             ))
                         :
@@ -189,6 +262,7 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal }) 
                 clickedTeam={teamContextMenu.clickedTeam}
                 buttons={generateButtons()}
             />
+            {isAllMembers && <AllMembersPopup toggleIsAllMembers={toggleIsAllMembers} pageId={boardId} teamMembersInfo={teamMembersInfo} />}
         </div>
     )
 }

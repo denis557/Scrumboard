@@ -9,6 +9,8 @@
 .page {
     flex: 1;
     background-color: #F5F5F5;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .wrapper {

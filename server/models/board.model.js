@@ -5,9 +5,11 @@ const taskSchema = ({
     title: { type: String, require: true },
     description: { type: String },
     date: { type: Date, default: new Date().toJSON() },
-    block: { type: String, default: "TODO" },
+    // block: { type: String, default: "TODO" },
+    block: { type: String },
     completed: { type: Boolean, default: false },
-    creator: { type: String }
+    creator: { type: [String] },
+    creatorGradient: { type: [String] }
 });
 
 const blockSchema = ({

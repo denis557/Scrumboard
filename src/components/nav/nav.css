@@ -45,6 +45,18 @@
     text-decoration: none;
 }
 
+.team_title_input {
+    height: 80%;
+    width: 70%;
+    padding: 0 0.4vw;
+    border-radius: 0.15625vw;
+    font-size: 1.0416vw;
+    font-weight: 300;
+    margin-left: 6.89%;
+    border: none;
+    outline: none;
+}
+
 .nav_button:hover {
     background-color: #E2E2E2;
     transition: all 0.3s;

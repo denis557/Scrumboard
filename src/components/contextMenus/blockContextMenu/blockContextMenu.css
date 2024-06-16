@@ -1,4 +1,4 @@
-.team-context-menu {
+.block-context-menu {
     visibility: hidden;
     opacity: 0;
     background-color: white;
@@ -15,12 +15,12 @@
     gap: 0.85vh;
 }
 
-.team-context-menu.active {
+.block-context-menu.active {
     visibility: visible;
     opacity: 1;
 }
 
-.team-context-menu-btn {
+.block-context-menu-button {
     width: 100%;
     /* height: 25%; */
     height: 25px;
@@ -34,16 +34,8 @@
     gap: 0.5729166vw;
 }
 
-.team-context-menu-btn svg {
+/* .block-context-menu svg {
     width: 1.25vw;
     height: 1.25vw;
 
-}
-
-.black {
-    color: black;
-}
-
-.red {
-    color: #FF2E2E;
-}
+} */

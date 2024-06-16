@@ -368,6 +368,7 @@ app.get('/get-all-boards', authentificateToken, async (req, res) => {
     return res.json({ error: false, boards: boardsInfo, message: 'Got boards successfully'});
 });
 
+// DONE
 app.get('/get-all-members/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
 
@@ -383,6 +384,7 @@ app.get('/get-all-members/:id', authentificateToken, async (req, res) => {
     })
 })
 
+// DONE
 app.put('/edit-board/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
     const { name } = req.body;
@@ -400,6 +402,7 @@ app.put('/edit-board/:id', authentificateToken, async (req, res) => {
     return res.json({ error: false, boardInfo, message: 'Name changed successfully'});
 })
 
+// DONE
 app.delete('/delete-board/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
 
@@ -422,6 +425,7 @@ app.delete('/delete-board/:id', authentificateToken, async (req, res) => {
     })
 })
 
+// IN PROGGRESS
 app.delete('/leave-board/:id', authentificateToken, async (req, res) => {
     const { user } = req.user;
     const board = req.params.id;
@@ -442,6 +446,7 @@ app.delete('/leave-board/:id', authentificateToken, async (req, res) => {
     });
 });
 
+// DONE
 app.post('/add-block/:id', authentificateToken, async(req, res) => {
     const board = req.params.id;
     const { name } = req.body;
@@ -462,6 +467,7 @@ app.post('/add-block/:id', authentificateToken, async(req, res) => {
     });
 });
 
+// DONE
 app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
     const board = req.params.id
     const block = req.params['block_id'];
@@ -485,6 +491,7 @@ app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
     });
 });
 
+// DONE
 app.delete('/delete-block/:id/:block_id', authentificateToken, async (req, res) => {
     const board = req.params.id
     const block = req.params['block_id'];
@@ -506,7 +513,7 @@ app.delete('/delete-block/:id/:block_id', authentificateToken, async (req, res) 
 app.post('/add-task/:id/:block_id', authentificateToken, async(req, res) => {
     const { user } = req.user;
     const board = req.params.id;
-    const block = req.params.block_id;
+    const block = req.params['block_id'];
     const { title } = req.body;
 
     if(!title) {
@@ -517,7 +524,7 @@ app.post('/add-task/:id/:block_id', authentificateToken, async(req, res) => {
     const boardInfo = await Board.findOne({ _id: board});
     const blockInfo = boardInfo.blocks.find(el => el._id.toString() === block.toString());
 
-    blockInfo.tasks.push({ title, creator: userInfo.name });
+    blockInfo.tasks.push({ title, block: block, creator: userInfo.name, creatorGradient: userInfo.gradient });
     await boardInfo.save();
 
     return res.json({
