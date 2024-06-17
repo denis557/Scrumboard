@@ -1,0 +1,184 @@
+.edit_task {
+    /* width: 36.4583vw; */
+    width: 34.2708vw;
+    /* height: 66.666vh; */
+    /* height: 61.74958vh; */
+    padding: 1.966568vh 1.09375vw 2.949852vh;
+    background-color: #fff;
+    border-radius: 0.260416vw;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+  }
+  
+.edit_task_header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.666vw;
+    font-weight: 300;
+    align-items: center;
+    margin-bottom: 1.2782vh;
+}
+
+.edit_task_header p {
+    flex-grow: 1;
+}
+
+.edit_task_option_div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.666vw;
+    align-items: center;
+    margin: 2.949852vh 0;
+}
+
+.edit_task_option_div svg {
+    margin: 0 0.78125vw 0 0.260416vw;
+}
+
+.edit_task_select {
+    width: 13.0208333vw;
+    height: 4.91642vh;
+    border: 1px solid #6C6C6C;
+    border-radius: 0.15625vw;
+    font-size: 1.5625vw;
+    font-weight: 300;
+}
+
+.edit_task_desc {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 2.26155vh 0 2.949852vh 0;
+}
+
+.edit_task_desc p {
+    max-height: 170px;
+    overflow-y: auto;
+}
+
+.edit_task_desc textarea {
+    border: none;
+    /* height: 170px; */
+    /* max-height: 170px; */
+    overflow-y: auto;
+    font-size: 1.0416666vw;
+    outline: none;
+    resize: none;
+    /* field-sizing: content; */
+}
+
+.edit_task_desc_header {
+    width: 100%;
+    display: inherit;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.78662vh;
+    font-size: 1.5625vw;
+    font-weight: 300;
+}
+
+.edit_task_desc_header svg {
+    margin: 0 0.78125vw 0 0.36458vw;
+}
+
+.edit_task_time {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2.16322517207vh 0;
+}
+
+.edit_task_time svg {
+    margin-left: 0.36458vw;
+}
+
+.edit_task_status {
+    width: 5.72916vw;
+    height: 3.441494vh;
+    border: 1px solid #0057FF;
+    border-radius: 0.15625vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0057FF;
+    font-size: 0.9375vw;
+    font-weight: 300;
+    margin: 0 0.78125vw;
+}
+
+.edit_task_date {
+    border: none;
+    outline: none;
+    font-size: 1.04166vw;
+}
+
+.edit_task_date::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.edit_task_completed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.25vw;
+    font-weight: 300;
+    margin: 0 0 0 auto;
+}
+
+.edit_task_completed input {
+    width: 2.083333vw;
+    height: 2.083333vw;
+    border: 1px solid #9C9C9C;
+    border-radius: 0.15625vw;
+    margin-right: 0.52083vw;
+}
+
+.edit_task_buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2.949852vh 0 0 0;
+}
+
+.edit_task_delete {
+    width: 6.770833vw;
+    height: 4.9164208vh;
+    border: 1px solid #FF2E2E;
+    border-radius: 0.15625vw;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF2E2E;
+    font-size: 1.3541666vw;
+    font-weight: 300;
+    margin-left: 0.36458vw;
+}
+
+.edit_task_save {
+    width: 6.25vw;
+    height: 4.9164208vh;
+    border: 1px solid #0057FF;
+    border-radius: 0.15625vw;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0057FF;
+    font-size: 1.3541666vw;
+    font-weight: 300;
+    margin: 0 0.46875vw 0 auto;
+}

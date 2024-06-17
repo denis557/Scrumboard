@@ -13,6 +13,7 @@ import AddBlock from '../../components/modals/addBlock/addBlock.jsx';
 import BlockContextMenu from '../../components/contextMenus/blockContextMenu/blockContextMenu.jsx';
 import AddTask from '../../components/modals/addTask/addTask.jsx';
 import { getInitial } from '../../helpers/getInitial.js';
+import EditTask from "../../components/modals/editTask/editTask.jsx";
 
 function Scrumboard() {
     const params = useParams();
@@ -23,6 +24,7 @@ function Scrumboard() {
     const [isJoinModal, setIsJoinModal] = useState(false);
     const [isAddBlock, setIsAddBlock] = useState(false);
     const [isAddTask, setIsAddTask] = useState(false);
+    const [isEditTask, setIsEditTask] = useState(true);
     const [blockContextMenu, setBlockContextMenu] = useState({
         position: {
             x: 0,
@@ -283,6 +285,7 @@ function Scrumboard() {
             {isJoinModal && <JoinTeamPopup toggleIsJoinModal={toggleIsJoinModal} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} />}
             {isAddBlock && <AddBlock toggleIsAddBlock={toggleIsAddBlock} getUserInfo={getUserInfo} getTeamInfo={getTeamInfo} boardId={params.id} />}
             {isAddTask && <AddTask toggleIsAddTask={toggleIsAddTask} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} boardId={params.id} blockId={blockId} />}
+            {isEditTask && <EditTask />}
         </>
     )
 }
