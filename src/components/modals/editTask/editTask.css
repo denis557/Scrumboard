@@ -15,14 +15,16 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    font-size: 1.666vw;
-    font-weight: 300;
     align-items: center;
     margin-bottom: 1.2782vh;
 }
 
-.edit_task_header p {
+.edit_task_header input {
     flex-grow: 1;
+    border: none;
+    font-size: 1.666vw;
+    font-weight: 300;
+    outline: none;
 }
 
 .edit_task_option_div {
@@ -63,6 +65,7 @@
     border: none;
     /* height: 170px; */
     /* max-height: 170px; */
+    height: 16.71583vh;
     overflow-y: auto;
     font-size: 1.0416666vw;
     outline: none;
@@ -110,6 +113,34 @@
     margin: 0 0.78125vw;
 }
 
+.edit_task_status_soon {
+    width: 5.052083vw;
+    height: 3.441494vh;
+    border: 1px solid #F8D72C;
+    border-radius: 0.15625vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F8D72C;
+    font-size: 0.9375vw;
+    font-weight: 300;
+    margin: 0 0.78125vw;
+}
+
+.edit_task_status_over {
+    width: 4.58333vw;
+    height: 3.441494vh;
+    border: 1px solid #FF2E2E;
+    border-radius: 0.15625vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF2E2E;
+    font-size: 0.9375vw;
+    font-weight: 300;
+    margin: 0 0.78125vw;
+}
+
 .edit_task_date {
     border: none;
     outline: none;
@@ -117,15 +148,7 @@
 }
 
 .edit_task_date::-webkit-calendar-picker-indicator {
-    background: transparent;
-    bottom: 0;
-    color: transparent;
-    height: auto;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
+    opacity: 0;
 }
 
 .edit_task_completed {
@@ -181,4 +204,10 @@
     font-size: 1.3541666vw;
     font-weight: 300;
     margin: 0 0.46875vw 0 auto;
+}
+
+.edit_task_save:disabled {
+    border: 1px solid #5b76ad;
+    color: #5b76ad;
+    cursor: not-allowed;
 }

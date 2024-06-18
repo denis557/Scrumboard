@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 
 const taskSchema = ({
     title: { type: String, require: true },
-    description: { type: String },
+    description: { type: String, default: '' },
     date: { type: Date, default: new Date().toJSON() },
-    // block: { type: String, default: "TODO" },
     block: { type: String },
     completed: { type: Boolean, default: false },
     creator: { type: [String] },

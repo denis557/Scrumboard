@@ -124,7 +124,7 @@
     width: 88.23529%;
 }
 
-.task_time {
+.task_time_blue {
     width: fit-content;
     padding: 0 0.520833vw 0 0.26041666vw;
     margin: 0.884955vh 0.46875vw 0 0;
@@ -137,11 +137,50 @@
     margin: 1.08161vh 0.46875vw 0 auto;
 }
 
-.task_time p {
+.task_time_blue p {
     font-size: 0.8333vw;
     color: #0057FF;
     margin-left: 0.2vw;
 }
+
+.task_time_yellow {
+    width: fit-content;
+    padding: 0 0.520833vw 0 0.26041666vw;
+    margin: 0.884955vh 0.46875vw 0 0;
+    height: 2.949852vh;
+    border-radius: 0.15625vw;
+    border: 1px solid #F8D72C;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1.08161vh 0.46875vw 0 auto;
+}
+
+.task_time_yellow p {
+    font-size: 0.8333vw;
+    color: #F8D72C;
+    margin-left: 0.2vw;
+}
+
+.task_time_red {
+    width: fit-content;
+    padding: 0 0.520833vw 0 0.26041666vw;
+    margin: 0.884955vh 0.46875vw 0 0;
+    height: 2.949852vh;
+    border-radius: 0.15625vw;
+    border: 1px solid #FF2E2E;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1.08161vh 0.46875vw 0 auto;
+}
+
+.task_time_red p {
+    font-size: 0.8333vw;
+    color: #FF2E2E;
+    margin-left: 0.2vw;
+}
+
 
 .creator_avatar {
     width: 2.0833vw;

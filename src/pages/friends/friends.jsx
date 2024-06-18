@@ -15,6 +15,7 @@ function Friends() {
     const [selectedFriend, setSelectedFriend] = useState(null);
 
     const friendsContextMenuRef = useRef(null);
+    const menuJustOpened = useRef(false);
 
     const [contextMenu, setContextMenu] = useState({
         position: {
@@ -26,6 +27,7 @@ function Friends() {
 
     function handleContextMenu(e, clickedFriend) {
         e.preventDefault();
+        menuJustOpened.current = true;
 
         const friendsContextMenuAttr = friendsContextMenuRef.current.getBoundingClientRect();
 
@@ -48,6 +50,9 @@ function Friends() {
             opened: true,
             clickedFriend
         });
+        setTimeout(() => {
+            menuJustOpened.current = false;
+        }, 100);
     };
 
     function resetFriendsContextMenu() {
@@ -63,7 +68,7 @@ function Friends() {
     useEffect(() => {
         function handler(e) {
             if(friendsContextMenuRef.current) {
-                if(!friendsContextMenuRef.current.contains(e.target)) {
+                if(!menuJustOpened.current && !friendsContextMenuRef.current.contains(e.target)) {
                     resetFriendsContextMenu();
                 }
             }
@@ -147,7 +152,7 @@ function Friends() {
                         </div>
                         {friendsInfo?.map((friend, index) => (
                         <React.Fragment key={friend?._id}>
-                            <div className='friend' onContextMenu={(e) => handleContextMenu(e, friend)}>
+                            <div className='friend' onContextMenu={(e) => handleContextMenu(e, friend)} onClick={(e) => handleContextMenu(e, friend)}>
                                 <div className='friend_body_name'>
                                     <div className='friend_avatar' style={{background: `linear-gradient(to bottom left, ${friend?.gradient[0]}, ${friend?.gradient[1]}`}}>{getInitial(friend?.name)}</div>
                                     <p className='friend_name'>{friend?.name} {friend?.surname || ''}</p>

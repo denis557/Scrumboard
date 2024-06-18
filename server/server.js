@@ -282,14 +282,6 @@ app.delete('/delete-friend/:email', authentificateToken, async (req, res) => {
     }
 })
 
-// BOARD APIS
-
-
-
-
-
-
-// DONE
 app.post('/create-board', authentificateToken, async (req, res) => {
     const { user } = req.user;
     const { name } = req.body;
@@ -317,7 +309,6 @@ app.post('/create-board', authentificateToken, async (req, res) => {
     });
 });
 
-// DONE
 app.post('/join-board', authentificateToken, async (req, res) => {
     const { user } = req.user;
     const { boardId } = req.body;
@@ -352,7 +343,6 @@ app.post('/join-board', authentificateToken, async (req, res) => {
     });
 });
 
-// DONE
 app.get('/get-all-boards', authentificateToken, async (req, res) => {
     const { user } = req.user;
 
@@ -368,7 +358,6 @@ app.get('/get-all-boards', authentificateToken, async (req, res) => {
     return res.json({ error: false, boards: boardsInfo, message: 'Got boards successfully'});
 });
 
-// DONE
 app.get('/get-all-members/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
 
@@ -384,7 +373,6 @@ app.get('/get-all-members/:id', authentificateToken, async (req, res) => {
     })
 })
 
-// DONE
 app.put('/edit-board/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
     const { name } = req.body;
@@ -402,7 +390,6 @@ app.put('/edit-board/:id', authentificateToken, async (req, res) => {
     return res.json({ error: false, boardInfo, message: 'Name changed successfully'});
 })
 
-// DONE
 app.delete('/delete-board/:id', authentificateToken, async (req, res) => {
     const board = req.params.id;
 
@@ -446,7 +433,6 @@ app.delete('/leave-board/:id', authentificateToken, async (req, res) => {
     });
 });
 
-// DONE
 app.post('/add-block/:id', authentificateToken, async(req, res) => {
     const board = req.params.id;
     const { name } = req.body;
@@ -467,7 +453,6 @@ app.post('/add-block/:id', authentificateToken, async(req, res) => {
     });
 });
 
-// DONE
 app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
     const board = req.params.id
     const block = req.params['block_id'];
@@ -491,7 +476,6 @@ app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
     });
 });
 
-// DONE
 app.delete('/delete-block/:id/:block_id', authentificateToken, async (req, res) => {
     const board = req.params.id
     const block = req.params['block_id'];
@@ -551,7 +535,8 @@ app.put('/edit-task/:id/:block_id/:task_id', authentificateToken, async(req, res
     if(title) taskInfo.title = title;
     if(description) taskInfo.description = description;
     if(date) taskInfo.date = date;
-    if(completed) taskInfo.completed = completed;
+    // if(completed) taskInfo.completed = completed;
+    taskInfo.completed = completed
     if(block && block !== taskInfo.block) {
         taskInfo.block = block;
         const newBlock = boardInfo.blocks.find(el => el._id.toString() === block.toString());
@@ -579,6 +564,7 @@ app.delete('/delete-task/:id/:block_id/:task_id', authentificateToken, async(req
 
     taskInfo.deleteOne();
 
+    boardInfo.save();
     blockInfo.save();
 
     return res.json({
