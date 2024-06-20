@@ -412,7 +412,6 @@ app.delete('/delete-board/:id', authentificateToken, async (req, res) => {
     })
 })
 
-// IN PROGGRESS
 app.delete('/leave-board/:id', authentificateToken, async (req, res) => {
     const { user } = req.user;
     const board = req.params.id;
