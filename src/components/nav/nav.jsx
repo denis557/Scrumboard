@@ -232,9 +232,9 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                 </div>
                 {isTeamOpened &&
                     <>
-                        {/* <div className={`nav_button ${selectedTeamId == 'board' ? 'selected' : ''}`} onClick={() => toggleSelectedTeam('board')}>
+                        <Link className={`nav_button ${selectedTeamId == 'board' ? 'selected' : ''}`} to={'/scrumboard'} onClick={() => toggleSelectedTeam('board')}>
                             <p className='team_title'>My board</p>
-                        </div> */}
+                        </Link>
                         {teamsInfo ?
                             (teamsInfo.map(team => 
                             <Link className={`nav_button ${selectedTeamId == team._id ? 'selected' : ''}`} key={team._id} to={`/scrumboard/${team._id}`} onContextMenu={(e) => handleTeamContext(e, team)} onClick={() => toggleSelectedTeam(team._id)}>

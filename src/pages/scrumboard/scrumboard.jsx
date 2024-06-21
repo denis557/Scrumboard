@@ -19,6 +19,7 @@ import { getDays } from '../../helpers/getDayofMonth.js';
 
 function Scrumboard() {
     const params = useParams();
+    console.log(params.id)
 
     const { userInfo, setUserInfo } = useContext(UserContext);
     const { teamsInfo, setTeamsInfo } = useContext(TeamContext) || { teamsInfo: [], setTeamsInfo: () => {} };

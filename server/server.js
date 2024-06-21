@@ -374,20 +374,35 @@ app.get('/get-all-members/:id', authentificateToken, async (req, res) => {
 })
 
 app.put('/edit-board/:id', authentificateToken, async (req, res) => {
-    const board = req.params.id;
-    const { name } = req.body;
+    const { name, isTeamBoard } = req.body;
+    if(isTeamBoard) {
+        const board = req.params.id;
+    
+        if(!name) {
+            return res.status(400).json({ error: true, message: 'No changes provided'});
+        }
+    
+        const boardInfo = await Board.findOne({ _id: board });
+    
+        if(name) boardInfo.name = name;
+    
+        await boardInfo.save();
+    
+        return res.json({ error: false, boardInfo, message: 'Name changed successfully'});
+    } else {
+        const { user } = req.user;
+        if(!name) {
+            return res.status(400).json({ error: true, message: 'No changes provided'});
+        }
 
-    if(!name) {
-        return res.status(400).json({ error: true, message: 'No changes provided'});
+        const userInfo = await User.findOne({ _id: user._id });
+
+        if(name) userInfo.personalBoardSchema.name = name;
+
+        await userInfo.save();
+    
+        return res.json({ error: false, userInfo, message: 'Name changed successfully'});
     }
-
-    const boardInfo = await Board.findOne({ _id: board });
-
-    if(name) boardInfo.name = name;
-
-    await boardInfo.save();
-
-    return res.json({ error: false, boardInfo, message: 'Name changed successfully'});
 })
 
 app.delete('/delete-board/:id', authentificateToken, async (req, res) => {
@@ -433,46 +448,87 @@ app.delete('/leave-board/:id', authentificateToken, async (req, res) => {
 });
 
 app.post('/add-block/:id', authentificateToken, async(req, res) => {
-    const board = req.params.id;
-    const { name } = req.body;
+    const { name, isTeamBoard } = req.body;
 
-    const boardInfo = await Board.findOne({ _id: board });
+    if(isTeamBoard) {
+        const board = req.params.id;
 
-    if(!name) {
-        return res.status(400).json({ error: true, message: 'Name is required'})
+        const boardInfo = await Board.findOne({ _id: board });
+    
+        if(!name) {
+            return res.status(400).json({ error: true, message: 'Name is required'})
+        }
+    
+        boardInfo.blocks.push({ name, tasks: [] });
+        await boardInfo.save();
+    
+        return res.json({
+            error: false,
+            boardInfo,
+            message: 'Block added successfully'
+        });
+    } else {
+        const { user } = req.user;
+        const userInfo = await User.findOne({ _id: user._id });
+    
+        if(!name) {
+            return res.status(400).json({ error: true, message: 'Name is required'})
+        }
+    
+        userInfo.personalBoardSchema.blocks.push({ name, tasks: [] });
+        await userInfo.save();
+    
+        return res.json({
+            error: false,
+            userInfo,
+            message: 'Block added successfully'
+        });
     }
-
-    boardInfo.blocks.push({ name, tasks: [] });
-    await boardInfo.save();
-
-    return res.json({
-        error: false,
-        boardInfo,
-        message: 'Block added successfully'
-    });
 });
 
 app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
-    const board = req.params.id
     const block = req.params['block_id'];
-    const { name } = req.body;
+    const { name, isTeamBoard } = req.body;
 
-    if(!name) {
-        return res.status(400).json({ error: false, message: 'No changed provided'});
+    if(isTeamBoard) {
+        const board = req.params.id
+
+        if(!name) {
+            return res.status(400).json({ error: false, message: 'No changed provided'});
+        }
+    
+        const boardInfo = await Board.findOne({ _id: board });
+        const blockInfo = boardInfo.blocks.find(el => el._id.toString() === block.toString());
+    
+        if(name) blockInfo.name = name;
+    
+        boardInfo.save();
+    
+        return res.json({
+            error: false,
+            boardInfo,
+            message: 'Changed block name successufully'
+        });
+    } else {
+        const { user } = req.user;
+
+        if(!name) {
+            return res.status(400).json({ error: false, message: 'No changed provided'});
+        }
+    
+        const userInfo = await User.findOne({ _id: user._id });
+        const blockInfo = userInfo.personalBoardSchema.blocks.find(el => el._id.toString() === block.toString());
+    
+        if(name) blockInfo.name = name;
+    
+        userInfo.save();
+    
+        return res.json({
+            error: false,
+            userInfo,
+            message: 'Changed block name successufully'
+        });
     }
-
-    const boardInfo = await Board.findOne({ _id: board });
-    const blockInfo = boardInfo.blocks.find(el => el._id.toString() === block.toString());
-
-    if(name) blockInfo.name = name;
-
-    boardInfo.save();
-
-    return res.json({
-        error: false,
-        boardInfo,
-        message: 'Changed block name successufully'
-    });
 });
 
 app.delete('/delete-block/:id/:block_id', authentificateToken, async (req, res) => {
