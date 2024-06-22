@@ -9,7 +9,7 @@ import axiosInstance from '../../helpers/axiosInstance.js';
 
 function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, getTeamInfo }) {
     const [isTeamOpened, setIsTeamOpened] = useState(false);
-    const [selectedTeamId, setSelectedTeamId] = useState('myBoard');
+    const [selectedTeamId, setSelectedTeamId] = useState('board');
     const { teamsInfo, setTeamsInfo } = useContext(TeamContext);
     const { userInfo, setUserInfo } = useContext(UserContext);
     const [isAllMembers, setIsAllMembers] = useState(false);
@@ -77,7 +77,6 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
 
     function handleTeamContext(e, clickedTeam) {
         e.preventDefault();
-        console.log(clickedTeam)
 
         const teamContextAttr = teamContextRef.current.getBoundingClientRect();
         
@@ -100,12 +99,11 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
             toggled: true,
             clickedTeam
         })
-        // currentBoard = clickedTeam._id == 'myBoard' ? '' : userInfo.boards.find(board => board.board == clickedTeam._id);
-        // console.log(currentBoard)
     }
 
     const generateButtons = () => {
-        let currentBoard = 'myBoard';
+        let currentBoard = 'board';
+
         if (teamContextMenu.clickedTeam && teamContextMenu.clickedTeam._id !== 'myBoard') {
             currentBoard = userInfo.boards.find(board => board.board === teamContextMenu.clickedTeam._id);
         }
@@ -137,7 +135,7 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
             }
         ];
 
-        return buttons.filter(button => button);
+        return buttons.filter(button => button); 
     };
 
     function resetTeamContext() {
@@ -196,7 +194,7 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
         function handleClickOutside(e) {
             if (inputTeamId && !e.target.closest('.team_title_input')) {
                 setInputTeamId(null);
-                setTeamTitle('')
+                setTeamTitle('');
             }
         }
         document.addEventListener('mousedown', handleClickOutside);
@@ -233,12 +231,11 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                 {isTeamOpened &&
                     <>
                         <Link className={`nav_button ${selectedTeamId == 'board' ? 'selected' : ''}`} to={'/scrumboard'} onClick={() => toggleSelectedTeam('board')}>
-                            <p className='team_title'>My board</p>
+                            {inputTeamId === 'board' ? <input value={teamTitle} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{userInfo.personalBoardSchema.name}</p>}
                         </Link>
                         {teamsInfo ?
                             (teamsInfo.map(team => 
                             <Link className={`nav_button ${selectedTeamId == team._id ? 'selected' : ''}`} key={team._id} to={`/scrumboard/${team._id}`} onContextMenu={(e) => handleTeamContext(e, team)} onClick={() => toggleSelectedTeam(team._id)}>
-                                {/* {isInput ? <input value={team.name} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{team.name}</p>} */}
                                 {inputTeamId === team._id ? <input value={teamTitle} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{team.name}</p>}
                             </Link>
                             ))
