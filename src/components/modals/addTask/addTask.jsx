@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import './addTask.css';
 import axiosInstance from '../../../helpers/axiosInstance.js';
 
-function AddTask({ toggleIsAddTask, getTeamInfo, getUserInfo, boardId, blockId }) {
+function AddTask({ toggleIsAddTask, getTeamInfo, getUserInfo, boardId, blockId, isTeamBoard }) {
     const [name, setName] = useState('');
     const [error, setError] = useState('');
 
     const createTask = async (e) => {
         e.preventDefault();
         try{
-            const response = await axiosInstance.post('/add-task/' + boardId + '/' + blockId, {title: name})
-            if(response.data && response.data.blockInfo) {
+            const response = await axiosInstance.post('/add-task/' + boardId + '/' + blockId, {
+                title: name,
+                isTeamBoard
+            })
+            if(response.data && response.data.blockInfo || response.data.userInfo) {
                 getTeamInfo();
                 getUserInfo();
                 toggleIsAddTask();
