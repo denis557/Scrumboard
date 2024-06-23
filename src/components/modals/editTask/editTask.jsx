@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./editTask.css";
 import { daysSinceDate } from "../../../helpers/daysLeft.js";
+import { UserContext } from "../../../contexts/userContext.jsx";
 import axiosInstance from "../../../helpers/axiosInstance.js";
 
-function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, currentBoard}) {
+function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, currentBoard, isTeamBoard, getUserInfo}) {
 
   let daysLeft = daysSinceDate(task);
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const [name, setName] = useState(task.title);
   const [currentBlock, setCurrentBlock] = useState(blockId);
   const [description, setDescription] = useState(task.description);
@@ -38,10 +40,12 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
         description: description,
         date: newDate,
         block: currentBlock,
-        completed: completed
+        completed: completed,
+        isTeamBoard
       })
       if(response.data && response.data.taskInfo) {
         getTeamInfo();
+        getUserInfo();
         toggleIsEditTask();
       }
     } catch(error) {
@@ -51,8 +55,11 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
 
   const deleteTask = async () => {
     try {
-      const response = await axiosInstance.delete('/delete-task/' + boardId + '/' + blockId + '/' + task._id);
+      const response = await axiosInstance.delete('/delete-task/' + boardId + '/' + blockId + '/' + task._id, {
+        isTeamBoard
+      });
       getTeamInfo();
+      getUserInfo();
       toggleIsEditTask();
     } catch(error) {
       console.log(error)
@@ -71,7 +78,12 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
         <div className='edit_task_option_div'>
           <svg className='svg_50' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.75 9.375V40.625M31.25 9.375V40.625M8.59375 40.625H41.4062C42.7 40.625 43.75 39.575 43.75 38.2812V11.7187C43.75 10.425 42.7 9.375 41.4062 9.375H8.59375C7.3 9.375 6.25 10.425 6.25 11.7187V38.2812C6.25 39.575 7.3 40.625 8.59375 40.625Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <select className='edit_task_select' value={currentBlock} onChange={(e) => setCurrentBlock(e.target.value)}>
-            {currentBoard.blocks.map(block => <option value={block._id} className='edit_task_option' key={block._id}>{block.name}</option>)}
+            {/* {currentBoard.blocks.map(block => <option value={block._id} className='edit_task_option' key={block._id}>{block.name}</option>)} */}
+            {isTeamBoard ? 
+              currentBoard.blocks.map(block => <option value={block._id} className='edit_task_option' key={block._id}>{block.name}</option>)
+            :
+              userInfo.personalBoardSchema.blocks.map(block => <option value={block._id} className='edit_task_option' key={block._id}>{block.name}</option>)
+            }
           </select>
         </div>
         <hr />

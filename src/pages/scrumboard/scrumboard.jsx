@@ -42,6 +42,7 @@ function Scrumboard() {
     const [blockTitle, setBlockTitle] = useState('');
     const [blockId, setBlockId] = useState('');
     const [selectedTask, setSelectedTask] = useState('');
+    const [isList, setIsList] = useState(false);
 
     function handleBlockContext(e, clickedBlock) {
         e.preventDefault();
@@ -148,7 +149,7 @@ function Scrumboard() {
             getTeamInfo();
             resetBlockContextMenu();
         } catch(error) {
-
+            console.log(error);
         }
     }
 
@@ -218,7 +219,7 @@ function Scrumboard() {
             <div className='wrapper'>
                 <Nav page="scrumboard" toggleIsCreateModal={toggleIsCreateModal} toggleIsJoinModal={toggleIsJoinModal} getTeamInfo={getTeamInfo} />
                 <div className='page'>
-                    <div className='board_body'>
+                    <div className={`board_body ${isList && 'list'}`}>
                     {params.id ? (
                             currentBoard && (<>
                                 {currentBoard.blocks.map(block => 
@@ -242,8 +243,8 @@ function Scrumboard() {
                                                     <hr />
                                                     <div className='task_footer'>
                                                         <div className='creator_avatar' style={{background: `linear-gradient(to bottom left, ${task.creatorGradient[0]}, ${task.creatorGradient[1]}`}}>{getInitial(task.creator[0])}</div>
-                                                        <div className={`task_time_${daysLeft >= 2 ? 'blue' : daysLeft == 1 ? 'yellow' : 'red'}`}>
-                                                            <svg className='proccessing svg_28' width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M14 7V14H19.25M24.5 14C24.5 15.3789 24.2284 16.7443 23.7007 18.0182C23.1731 19.2921 22.3996 20.4496 21.4246 21.4246C20.4496 22.3996 19.2921 23.1731 18.0182 23.7007C16.7443 24.2284 15.3789 24.5 14 24.5C12.6211 24.5 11.2557 24.2284 9.98182 23.7007C8.70791 23.1731 7.55039 22.3996 6.57538 21.4246C5.60036 20.4496 4.82694 19.2921 4.29926 18.0182C3.77159 16.7443 3.5 15.3789 3.5 14C3.5 11.2152 4.60625 8.54451 6.57538 6.57538C8.54451 4.60625 11.2152 3.5 14 3.5C16.7848 3.5 19.4555 4.60625 21.4246 6.57538C23.3938 8.54451 24.5 11.2152 24.5 14Z" stroke={`${daysLeft >= 2 ? '#0057FF' : daysLeft == 1 ? '#F8D72C' : '#FF2E2E'}`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
+                                                        <div className={`task_time_${daysLeft >= 24 ? 'blue' : daysLeft >= 1 ? 'yellow' : 'red'}`}>
+                                                            <svg className='proccessing svg_28' width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M14 7V14H19.25M24.5 14C24.5 15.3789 24.2284 16.7443 23.7007 18.0182C23.1731 19.2921 22.3996 20.4496 21.4246 21.4246C20.4496 22.3996 19.2921 23.1731 18.0182 23.7007C16.7443 24.2284 15.3789 24.5 14 24.5C12.6211 24.5 11.2557 24.2284 9.98182 23.7007C8.70791 23.1731 7.55039 22.3996 6.57538 21.4246C5.60036 20.4496 4.82694 19.2921 4.29926 18.0182C3.77159 16.7443 3.5 15.3789 3.5 14C3.5 11.2152 4.60625 8.54451 6.57538 6.57538C8.54451 4.60625 11.2152 3.5 14 3.5C16.7848 3.5 19.4555 4.60625 21.4246 6.57538C23.3938 8.54451 24.5 11.2152 24.5 14Z" stroke={`${daysLeft >= 24 ? '#0057FF' : daysLeft >= 1 ? '#F8D72C' : '#FF2E2E'}`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
                                                             <p>{getDays(task)}</p>
                                                         </div>
                                                     </div>
@@ -279,9 +280,8 @@ function Scrumboard() {
                                                 </div>
                                                 <hr />
                                                 <div className='task_footer'>
-                                                    <div className='creator_avatar' style={{background: `linear-gradient(to bottom left, ${task.creatorGradient[0]}, ${task.creatorGradient[1]}`}}>{getInitial(task.creator[0])}</div>
-                                                    <div className={`task_time_${daysLeft >= 2 ? 'blue' : daysLeft == 1 ? 'yellow' : 'red'}`}>
-                                                        <svg className='proccessing svg_28' width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M14 7V14H19.25M24.5 14C24.5 15.3789 24.2284 16.7443 23.7007 18.0182C23.1731 19.2921 22.3996 20.4496 21.4246 21.4246C20.4496 22.3996 19.2921 23.1731 18.0182 23.7007C16.7443 24.2284 15.3789 24.5 14 24.5C12.6211 24.5 11.2557 24.2284 9.98182 23.7007C8.70791 23.1731 7.55039 22.3996 6.57538 21.4246C5.60036 20.4496 4.82694 19.2921 4.29926 18.0182C3.77159 16.7443 3.5 15.3789 3.5 14C3.5 11.2152 4.60625 8.54451 6.57538 6.57538C8.54451 4.60625 11.2152 3.5 14 3.5C16.7848 3.5 19.4555 4.60625 21.4246 6.57538C23.3938 8.54451 24.5 11.2152 24.5 14Z" stroke={`${daysLeft >= 2 ? '#0057FF' : daysLeft == 1 ? '#F8D72C' : '#FF2E2E'}`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
+                                                    <div className={`task_time_${daysLeft >= 24 ? 'blue' : daysLeft >= 1 ? 'yellow' : 'red'}`}>
+                                                        <svg className='proccessing svg_28' width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M14 7V14H19.25M24.5 14C24.5 15.3789 24.2284 16.7443 23.7007 18.0182C23.1731 19.2921 22.3996 20.4496 21.4246 21.4246C20.4496 22.3996 19.2921 23.1731 18.0182 23.7007C16.7443 24.2284 15.3789 24.5 14 24.5C12.6211 24.5 11.2557 24.2284 9.98182 23.7007C8.70791 23.1731 7.55039 22.3996 6.57538 21.4246C5.60036 20.4496 4.82694 19.2921 4.29926 18.0182C3.77159 16.7443 3.5 15.3789 3.5 14C3.5 11.2152 4.60625 8.54451 6.57538 6.57538C8.54451 4.60625 11.2152 3.5 14 3.5C16.7848 3.5 19.4555 4.60625 21.4246 6.57538C23.3938 8.54451 24.5 11.2152 24.5 14Z" stroke={`${daysLeft >= 23 ? '#0057FF' : daysLeft >= 1 ? '#F8D72C' : '#FF2E2E'}`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
                                                         <p>{getDays(task)}</p>
                                                     </div>
                                                 </div>
@@ -291,6 +291,10 @@ function Scrumboard() {
                                     </div>
                                 </div>
                             )}
+                            <button className='add_block' onClick={toggleIsAddBlock}>
+                                    <svg className='svg_50 add_block_svg' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M25 9.375V40.625M40.625 25H9.375" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
+                                    <p>Add block</p>
+                            </button>
                     </>))}
                     </div>
                 </div>
@@ -317,9 +321,9 @@ function Scrumboard() {
             />
             {isCreateModal && <CreateTeamPopup toggleIsCreateModal={toggleIsCreateModal} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} />}
             {isJoinModal && <JoinTeamPopup toggleIsJoinModal={toggleIsJoinModal} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} />}
-            {isAddBlock && <AddBlock toggleIsAddBlock={toggleIsAddBlock} getUserInfo={getUserInfo} getTeamInfo={getTeamInfo} boardId={params.id} />}
-            {isAddTask && <AddTask toggleIsAddTask={toggleIsAddTask} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} boardId={params.id} blockId={blockId} />}
-            {isEditTask && <EditTask toggleIsEditTask={toggleIsEditTask} getTeamInfo={getTeamInfo} boardId={params.id} blockId={blockId} task={selectedTask} currentBoard={currentBoard} />}
+            {isAddBlock && <AddBlock isTeamBoard={isTeamBoard} toggleIsAddBlock={toggleIsAddBlock} getUserInfo={getUserInfo} getTeamInfo={getTeamInfo} boardId={params.id} />}
+            {isAddTask && <AddTask isTeamBoard={isTeamBoard} toggleIsAddTask={toggleIsAddTask} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} boardId={params.id} blockId={blockId} />}
+            {isEditTask && <EditTask isTeamBoard={isTeamBoard} toggleIsEditTask={toggleIsEditTask} getTeamInfo={getTeamInfo} getUserInfo={getUserInfo} boardId={params.id} blockId={blockId} task={selectedTask} currentBoard={currentBoard} />}
         </>
     )
 }

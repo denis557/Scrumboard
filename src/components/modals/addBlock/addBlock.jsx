@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './addBlock.css';
 import axiosInstance from '../../../helpers/axiosInstance.js';
 
-function AddBlock({ toggleIsAddBlock, getTeamInfo, getUserInfo, boardId }) {
+function AddBlock({ toggleIsAddBlock, getTeamInfo, getUserInfo, boardId, isTeamBoard }) {
     const [name, setName] = useState('');
     const [error, setError] = useState('');
 
@@ -10,9 +10,10 @@ function AddBlock({ toggleIsAddBlock, getTeamInfo, getUserInfo, boardId }) {
         e.preventDefault();
         try {
             const response = await axiosInstance.post('/add-block/' + boardId, {
-                name: name
+                name: name,
+                isTeamBoard
             })
-            if(response.data && response.data.boardInfo){
+            if(response.data && response.data.boardInfo || response.data.userInfo){
                 getTeamInfo();
                 getUserInfo();
                 toggleIsAddBlock();

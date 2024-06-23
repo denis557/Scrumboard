@@ -4,8 +4,8 @@ export function daysSinceDate(task) {
   
   const differenceInMilliseconds = taskDate - currentDate;
   
-  const millisecondsInOneDay = 24 * 60 * 60 * 1000;
-  const daysDifference = Math.floor(differenceInMilliseconds / millisecondsInOneDay);
+  const millisecondsInOneHour = 60 * 60 * 1000;
+  const daysDifference = Math.floor(differenceInMilliseconds / millisecondsInOneHour);
   
   return daysDifference;
 }
