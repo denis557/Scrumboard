@@ -218,6 +218,7 @@ function Scrumboard() {
 
 
     const currentBoard = params.id ? teamsInfo.find(team => team._id == params.id) : {};
+    console.log(isTeamBoard)
 
     return (
         <>

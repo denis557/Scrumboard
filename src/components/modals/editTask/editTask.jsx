@@ -47,6 +47,7 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
         getTeamInfo();
         getUserInfo();
         toggleIsEditTask();
+        getUserInfo();
       }
     } catch(error) {
       console.log(error)
@@ -63,6 +64,7 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
       getTeamInfo();
       getUserInfo();
       toggleIsEditTask();
+      getUserInfo();
     } catch(error) {
       console.log(error)
     }
