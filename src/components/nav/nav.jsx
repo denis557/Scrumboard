@@ -7,7 +7,7 @@ import { UserContext } from '../../contexts/userContext.jsx';
 import AllMembersPopup from '../../components/modals/allMembers/allMembers.jsx';
 import axiosInstance from '../../helpers/axiosInstance.js';
 
-function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, getTeamInfo, toggleIsList, isList }) {
+function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, getTeamInfo, toggleIsList, isList, isTeamBoard }) {
     const [isTeamOpened, setIsTeamOpened] = useState(false);
     const [selectedTeamId, setSelectedTeamId] = useState('board');
     const { teamsInfo, setTeamsInfo } = useContext(TeamContext);
@@ -234,12 +234,12 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                 </div>
                 {isTeamOpened &&
                     <>
-                        <Link className={`nav_button ${selectedTeamId == 'board' ? 'selected' : ''}`} to={'/scrumboard'} onClick={() => toggleSelectedTeam('board')}>
+                        <Link className={`nav_button ${!isTeamBoard && selectedTeamId == 'board' ? 'selected' : ''}`} to={'/scrumboard'} onClick={() => toggleSelectedTeam('board')}>
                             {inputTeamId === 'board' ? <input value={teamTitle} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{userInfo.personalBoardSchema.name}</p>}
                         </Link>
                         {teamsInfo ?
                             (teamsInfo.map(team => 
-                            <Link className={`nav_button ${selectedTeamId == team._id ? 'selected' : ''}`} key={team._id} to={`/scrumboard/${team._id}`} onContextMenu={(e) => handleTeamContext(e, team)} onClick={() => toggleSelectedTeam(team._id)}>
+                            <Link className={`nav_button ${isTeamBoard && selectedTeamId == team._id ? 'selected' : ''}`} key={team._id} to={`/scrumboard/${team._id}`} onContextMenu={(e) => handleTeamContext(e, team)} onClick={() => toggleSelectedTeam(team._id)}>
                                 {inputTeamId === team._id ? <input value={teamTitle} className='team_title_input' onChange={e => setTeamTitle(e.target.value)} onKeyDown={handleTitleInput} /> : <p className='team_title'>{team.name}</p>}
                             </Link>
                             ))

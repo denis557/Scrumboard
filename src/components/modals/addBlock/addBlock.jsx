@@ -33,7 +33,7 @@ function AddBlock({ toggleIsAddBlock, getTeamInfo, getUserInfo, boardId, isTeamB
                 </div>
                 <hr className='modal_create_separator' />
                 <p className='modal_name'>Name</p>
-                <input type='text' className='modal_create_input' value={name} onChange={(e) => setName(e.target.value)} />
+                <input type='text' className='modal_create_input' value={name} onChange={(e) => setName(e.target.value)} maxLength={17} />
                 <hr className='modal_create_separator' />
                 <button type='submit' className='modal_create_submit'>Create</button>
                 {error && <p className='error_modal'>{error}</p>}
