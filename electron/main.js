@@ -1,30 +1,28 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
-const { exec } = require('child_process');
+// const { spawn } = require('child_process');
 
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const startServer = () => {
-  exec('npm run node-start', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Ошибка при запуске сервера: ${error}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`Ошибка сервера: ${stderr}`);
-      return;
-    }
-    console.log(`Вывод сервера: ${stdout}`);
-  });
-};
+// let serverProcess;
+
+// const startServer = () => {
+//   serverProcess = spawn('npm', ['run', 'node-start'], { shell: true });
+// };
+
+// const stopServer = () => {
+//   if (serverProcess) {
+//     serverProcess.kill('SIGTERM');
+//     serverProcess = null;
+//   }
+// };
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    // autoHideMenuBar: true,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -36,7 +34,7 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   createWindow();
-  startServer();
+  // startServer();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -44,6 +42,10 @@ app.whenReady().then(() => {
     }
   });
 });
+
+// app.on('before-quit', () => {
+//   stopServer();
+// });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

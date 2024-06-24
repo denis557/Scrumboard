@@ -55,8 +55,10 @@ function EditTask({ toggleIsEditTask, getTeamInfo, boardId, blockId, task, curre
 
   const deleteTask = async () => {
     try {
-      const response = await axiosInstance.delete('/delete-task/' + boardId + '/' + blockId + '/' + task._id, {
-        isTeamBoard
+      const response = await axiosInstance.delete('/delete-task/' + boardId + '/' + blockId + '/' + task._id, 
+        {params: {
+          isTeamBoard
+        }
       });
       getTeamInfo();
       getUserInfo();

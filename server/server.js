@@ -533,7 +533,8 @@ app.put('/edit-block/:id/:block_id', authentificateToken, async (req, res) => {
 
 app.delete('/delete-block/:id/:block_id', authentificateToken, async (req, res) => {
     const block = req.params['block_id'];
-    const { isTeamBoard } = req.body;
+    // const { isTeamBoard } = req.body;
+    const isTeamBoard = req.query.isTeamBoard === 'true';
 
     if(isTeamBoard) {
         const board = req.params.id
@@ -676,7 +677,8 @@ app.put('/edit-task/:id/:block_id/:task_id', authentificateToken, async(req, res
 app.delete('/delete-task/:id/:block_id/:task_id', authentificateToken, async(req, res) => {
     const blockParam = req.params.block_id;
     const task = req.params.task_id;
-    const { isTeamBoard } = req.body;
+    // const { isTeamBoard } = req.body;
+    const isTeamBoard = req.query.isTeamBoard === 'true';
 
     if(isTeamBoard) {
         const board = req.params.id;
@@ -703,7 +705,6 @@ app.delete('/delete-task/:id/:block_id/:task_id', authentificateToken, async(req
         taskInfo.deleteOne();
     
         userInfo.save();
-        blockInfo.save();
     
         return res.json({
             error: false,
