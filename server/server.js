@@ -317,6 +317,10 @@ app.post('/join-board', authentificateToken, async (req, res) => {
         return res.status(400).json({ error: true, message: 'Id of board is required'});
     }
 
+    if(boardId.lenght !== 24) {
+        return res.status(400).json({ error: true, message: "Board not found"});
+    }
+
     const userInfo = await User.findOne({ _id: user._id });
     const boardInfo = await Board.findOne({ _id: boardId });
 
