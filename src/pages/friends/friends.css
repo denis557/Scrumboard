@@ -10,7 +10,6 @@
     width: 89.5%;
     height: 8.44%;
     background-color: #EDEDED;
-    /* border-radius: 6px; */
     border-radius: 0.3125vw;
     margin-top: 60px;
     display: flex;
@@ -19,7 +18,6 @@
 }
 
 .friend_header_title {
-    /* font-size: 32px; */
     font-size: 1.66vw;
 }
 
@@ -43,23 +41,16 @@
     margin: 0 0 0 2%;
 }
 
-/* .friends_body {
-    width: 89.5%;
-
-} */
-
 .friend {
     width: 89.5%;
     height: 8.44%;
     display: flex;
     flex-direction: row;
     margin: 1% 0;
-    /* background-color: #D9D9D9; */
     align-items: center;
 }
 
 .friend_body_name {
-    /* font-size: 36px; */
     font-size: 1.875vw;
     width: 35.7%;
     display: flex;
@@ -67,7 +58,6 @@
 }
 
 .friend_body_email {
-    /* font-size: 32px; */
     font-size: 1.66vw;
     width: 49%;
 }
@@ -77,24 +67,18 @@
 }
 
 .friend_name {
-    /* margin-left: 20px; */
     margin-left: 1.0416vw;
 }
 
 .friend_email {
-    /* margin-left: 20px; */
     margin-left: 1.0416vw;
 }
 
 .friend_status {
-    /* width: 73%; */
-    /* height: 62.5%; */
-    /* height: 2.60416vw; */
     width: fit-content;
     margin-left: 6.8%;
     background-color: transparent;
     border: 1px solid #9C9C9C;
-    /* border-radius: 3px; */
     border-radius: 0.15625vw;
     display: flex;
     align-items: center;
@@ -102,15 +86,13 @@
 
 .status_title {
     width: fit-content;
-    /* font-size: 32px; */
     margin-right: 8px;
     font-size: 1.66vw;
     color: #9C9C9C;
+    user-select: none;
 }
 
 .friend_avatar {
-    /* width: 50px; */
-    /* height: 50px; */
     width: 2.60416vw;
     height: 2.60416vw;
     border-radius: 50%;
@@ -118,16 +100,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* font-size: 36px; */
     font-size: 1.875vw;
     user-select: none;
-    /* margin-left: 15px; */
     margin-left: 0.78125%;
 }
 
 .friend_separator {
     border: none;
-    /* width: 1400px; */
     width: 72.916vw;
     background-color: black;
     height: 1px;

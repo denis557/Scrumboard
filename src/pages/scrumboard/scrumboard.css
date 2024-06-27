@@ -99,6 +99,7 @@
     align-items: center;
     font-size: 1.0416vw;
     cursor: pointer;
+    user-select: none;
 }
 
 .add_block_svg {
@@ -200,6 +201,7 @@
     font-size: 0.8333vw;
     color: #0057FF;
     margin-left: 0.2vw;
+    user-select: none;
 }
 
 .task_time_yellow {
@@ -219,6 +221,7 @@
     font-size: 0.8333vw;
     color: #F8D72C;
     margin-left: 0.2vw;
+    user-select: none;
 }
 
 .task_time_red {
@@ -238,6 +241,7 @@
     font-size: 0.8333vw;
     color: #FF2E2E;
     margin-left: 0.2vw;
+    user-select: none;
 }
 
 .task_time_blue_list {
@@ -302,6 +306,7 @@
     align-self: flex-start;
     margin-left: 0.625vw;
     align-self: center;
+    user-select: none;
 }
 
 .list_creator_avatar {
@@ -314,6 +319,7 @@
     justify-content: center;
     align-self: flex-start;
     align-self: center;
+    user-select: none;
 }
 
 .task_footer {

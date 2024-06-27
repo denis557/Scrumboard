@@ -10,11 +10,9 @@ function Header() {
 
     return(
         <div className='header'>
-            <input className='search' />
-            <Link to='/settings' className='header_settings_link'>
-                <div className='avatar' style={{background: `linear-gradient(to bottom left, ${userInfo?.gradient[0]}, ${userInfo?.gradient[1]}`}}>
-                    <p className='header_avatar_p'>{getInitial(userInfo?.name)}</p>
-                </div>
+            {/* <input className='search' /> */}
+            <Link to='/settings' className='header_settings_link' style={{background: `linear-gradient(to bottom left, ${userInfo?.gradient[0]}, ${userInfo?.gradient[1]}`}}>
+                <p className='header_avatar_p'>{getInitial(userInfo?.name)}</p>
             </Link>
         </div>
     )

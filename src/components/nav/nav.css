@@ -127,6 +127,7 @@
     color: #0057FF;
     align-items: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .team_button svg {
