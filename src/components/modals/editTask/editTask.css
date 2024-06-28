@@ -149,6 +149,9 @@
 
 .edit_task_date::-webkit-calendar-picker-indicator {
     opacity: 0;
+    background-color: transparent;
+    width : 100%;
+    position: absolute;
 }
 
 .edit_task_completed {

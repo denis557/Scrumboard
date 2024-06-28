@@ -218,7 +218,6 @@ function Scrumboard() {
 
 
     const currentBoard = params.id ? teamsInfo.find(team => team._id == params.id) : {};
-    console.log(isTeamBoard)
 
     return (
         <>
@@ -232,7 +231,7 @@ function Scrumboard() {
                                 {currentBoard.blocks.map(block => 
                                     <div className={`block${isList ? '_list' : ''}`} key={block._id}>
                                         <div className={`block_header${isList ? '_list' : ''}`}>
-                                            {inputBlockId == block._id ? <input value={blockTitle} className='block_title_input' onChange={e => {setBlockTitle(e.target.value); console.log(blockTitle)}} onKeyDown={handleTitleInput} maxLength={17} /> 
+                                            {inputBlockId == block._id ? <input value={blockTitle} className='block_title_input' onChange={e => {setBlockTitle(e.target.value)}} onKeyDown={handleTitleInput} maxLength={17} /> 
                                             : 
                                             <p className='block_header_p'>{block.name}</p>}
                                             <svg className='svg_50 add_task' onClick={() => {toggleIsAddTask(); setBlockId(block._id)}} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M25 9.375V40.625M40.625 25H9.375" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
@@ -283,7 +282,7 @@ function Scrumboard() {
                             {userInfo.personalBoardSchema.blocks.map(block => 
                                 <div className={`block${isList ? '_list' : ''}`} key={block._id}>
                                     <div className={`block_header${isList ? '_list' : ''}`}>
-                                        {inputBlockId == block._id ? <input value={blockTitle} className='block_title_input' onChange={e => {setBlockTitle(e.target.value); console.log(blockTitle)}} onKeyDown={handleTitleInput} maxLength={17} /> 
+                                        {inputBlockId == block._id ? <input value={blockTitle} className='block_title_input' onChange={e => {setBlockTitle(e.target.value)}} onKeyDown={handleTitleInput} maxLength={17} /> 
                                         : 
                                         <p className='block_header_p'>{block.name}</p>}
                                         <svg className='svg_50 add_task' onClick={() => {toggleIsAddTask(); setBlockId(block._id)}} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M25 9.375V40.625M40.625 25H9.375" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
