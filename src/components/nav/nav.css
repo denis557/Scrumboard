@@ -128,16 +128,19 @@
     align-items: center;
     cursor: pointer;
     user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.team_button svg {
+/* .team_button svg {
     margin-left: 0.260416vw;
-}
+} */
 
 .create_team_btn_p {
-    margin-left: 0.2vw;
+    /* margin-left: 0.2vw; */
 }
 
 .join_team_btn_p {
-    margin-left: 0.78125vw;
+    /* margin-left: 0.78125vw; */
 }

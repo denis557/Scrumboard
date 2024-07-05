@@ -224,7 +224,7 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                     {isList ? 
                     <svg className='nav_svg svg_44' width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect x="0.4" y="0.4" width="43.2" height="43.2" rx="2.6" stroke="black" strokeWidth="0.8"/> <line x1="12.4" y1="7" x2="12.4" y2="37" stroke="black" strokeWidth="0.8"/> <line x1="32.4" y1="7" x2="32.4" y2="27" stroke="black" strokeWidth="0.8"/> <line x1="22.4" y1="7" x2="22.4" y2="32" stroke="black" strokeWidth="0.8"/> </svg>
                         : 
-                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.4" y="43.6" width="43.2" height="43.2" rx="2.6" transform="rotate(-90 0.4 43.6)" stroke="black" strokeWidth="0.8"/><line x1="7" y1="31.6" x2="37" y2="31.6" stroke="black" strokeWidth="0.8"/><line x1="7" y1="11.6" x2="27" y2="11.6" stroke="black" strokeWidth="0.8"/><line x1="7" y1="21.6" x2="32" y2="21.6" stroke="black" strokeWidth="0.8"/></svg>
+                    <svg className="nav_svg svg_44" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.4" y="43.6" width="43.2" height="43.2" rx="2.6" transform="rotate(-90 0.4 43.6)" stroke="black" strokeWidth="0.8"/><line x1="7" y1="31.6" x2="37" y2="31.6" stroke="black" strokeWidth="0.8"/><line x1="7" y1="11.6" x2="27" y2="11.6" stroke="black" strokeWidth="0.8"/><line x1="7" y1="21.6" x2="32" y2="21.6" stroke="black" strokeWidth="0.8"/></svg>
                     }
                     <p className="nav_button_title">{isList ? 'Switch to board' : 'Switch to list'}</p>
                 </div>
