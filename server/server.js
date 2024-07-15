@@ -1,5 +1,4 @@
-process.env.ACCESS_TOKEN_SECRET = '68543ffbb6881209c51c26d66471eac9181f3e0d9692079c7cb412fc61c97b2e';
-require('dotenv').config();
+require('dotenv').config({ path: __dirname+'/.env' });
 
 const config = require('./config.json');
 const mongoose = require('mongoose');
@@ -717,7 +716,5 @@ app.delete('/delete-task/:id/:block_id/:task_id', authentificateToken, async(req
         });
     }
 });
-
-app.listen(8000);
 
 module.exports = app

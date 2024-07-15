@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
-const { spawn } = require('child_process');
+const server = require('../server/server');
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -9,14 +9,11 @@ if (require('electron-squirrel-startup')) {
 let serverProcess;
 
 const startServer = () => {
-  serverProcess = spawn('npm', ['run', 'node-start'], { shell: true });
+  serverProcess = server.listen(8000);
 };
 
 const stopServer = () => {
-  if (serverProcess) {
-    serverProcess.kill('SIGTERM');
-    serverProcess = null;
-  }
+  serverProcess.close();
 };
 
 const createWindow = () => {
@@ -34,8 +31,8 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  createWindow();
   startServer();
+  createWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

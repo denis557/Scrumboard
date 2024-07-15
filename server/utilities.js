@@ -1,6 +1,5 @@
-process.env.ACCESS_TOKEN_SECRET = '68543ffbb6881209c51c26d66471eac9181f3e0d9692079c7cb412fc61c97b2e';
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv').config({ path: __dirname+'/.env' });
 
 function authentificateToken(req, res, next) {
     const authHeader = req.headers['authorization'];

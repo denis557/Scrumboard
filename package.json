@@ -5,13 +5,7 @@
   "description": "My Electron application description",
   "main": ".webpack/main",
   "build": {
-    "icon": "./src/assets/icons/128x128.ico",
-    "extraResources": [
-      {
-        "from": "server",
-        "to": "server"
-      }
-    ]
+    "icon": "./src/assets/icons/128x128.ico"
   },
   "scripts": {
     "start": "electron-forge start",
