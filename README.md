@@ -1,6 +1,7 @@
 <div align="center">
     <img src="./src/assets/128x128.png"/>
     <h1>Scrumboard</h1>
+    <p>Cross-platform app for writing tasks</p>
 </div>
 
 ## About

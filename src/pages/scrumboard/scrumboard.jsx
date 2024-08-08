@@ -44,6 +44,8 @@ function Scrumboard() {
     const [selectedTask, setSelectedTask] = useState('');
     const [isList, setIsList] = useState(false);
 
+    console.log(innerWidth, innerHeight)
+
     function handleBlockContext(e, clickedBlock) {
         e.preventDefault();
         menuJustOpened.current = true;
