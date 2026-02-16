@@ -2,8 +2,11 @@
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    padding: 2.94vh 2.6vw;
+    gap: 4.91vh 2.34375vw;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .friends_header {
@@ -41,20 +44,45 @@
     margin: 0 0 0 2%;
 }
 
-.friend {
-    width: 89.5%;
-    height: 8.44%;
-    display: flex;
-    flex-direction: row;
-    margin: 1% 0;
-    align-items: center;
+.friend_search {
+    width: 14.79vw;
+    height: 4.9vh;
+    padding: 0 0.41vw;
+    background-color: transparent;
+    border: 1px solid #6C6C6C;
+    border-radius: 0.2vw;
+    margin-left: 1.04vw;
+    margin-top: 1.96vh;
+    font-size: 1.25vw;
 }
 
-.friend_body_name {
-    font-size: 1.875vw;
-    width: 35.7%;
+.friend {
+    width: 25.5vw;
+    height: 9.1vh;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    border: 1px solid #4F4F4F;
+    border-radius: 0.26vw;
+    transition: all 0.3s;
+}
+
+.friend:hover {
+    background-color: #E9E9E9;
+    transition: all 0.3s;
+}
+
+.friend_body {
+    height: 100%;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.friend_name_body {
+    font-size: 1.875vw;
 }
 
 .friend_body_email {
@@ -62,8 +90,9 @@
     width: 49%;
 }
 
-.friend_body_status {
-    width: 15%;
+.friend_status_body {
+    font-size: 1.25vw;
+    color: green;
 }
 
 .friend_name {
@@ -93,16 +122,18 @@
 }
 
 .friend_avatar {
-    width: 2.60416vw;
-    height: 2.60416vw;
+    width: 3.125vw;
+    height: 3.125vw;
     border-radius: 50%;
     background: linear-gradient(#05E15D, #A2EEC0);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.875vw;
+    font-size: 2vw;
     user-select: none;
-    margin-left: 0.78125%;
+    margin-left: 0.78125vw;
+    margin-right: 0.52vw;
+    /* margin-left: 0.78125%; */
 }
 
 .friend_separator {

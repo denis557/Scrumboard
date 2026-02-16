@@ -1,6 +1,6 @@
 .board_body {
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
     display: flex;
     flex-direction: row;
     padding: 6.882989vh 3.64583vw;

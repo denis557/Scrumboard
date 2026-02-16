@@ -8,17 +8,14 @@ function Profile({ handleProfile, friend, deleteFriend, setIsOpened }) {
         <div className='profile-body'>
             <div className='overlay' onClick={handleProfile}></div>
             <div className='profile'>
-                <div className='profile-header'>
-                    <svg className='svg_50' onClick={handleProfile} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 37.5L37.5 12.5M12.5 12.5L37.5 37.5" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </div>
                 <div className='profile-main'>
                     <div className='profile-user-info'>
                         <div className='profile-avatar' style={{background: `linear-gradient(to bottom left, ${friend?.gradient[0]}, ${friend?.gradient[1]}`}}>{getInitial(friend?.name)}</div>
-                        <h3>{friend?.name} {friend?.surname || ''}</h3>
-                        <div className='profile-status'>
-                            <svg className='svg_55' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M22.3438 22.3438L32.6563 32.6563M32.6563 22.3438L22.3438 32.6563M48.125 27.5C48.125 30.2085 47.5915 32.8905 46.555 35.3928C45.5185 37.8952 43.9993 40.1689 42.0841 42.0841C40.1689 43.9993 37.8952 45.5185 35.3928 46.555C32.8905 47.5915 30.2085 48.125 27.5 48.125C24.7915 48.125 22.1095 47.5915 19.6072 46.555C17.1048 45.5185 14.8311 43.9993 12.9159 42.0841C11.0007 40.1689 9.48149 37.8952 8.44498 35.3928C7.40848 32.8905 6.875 30.2085 6.875 27.5C6.875 22.0299 9.04798 16.7839 12.9159 12.9159C16.7839 9.04799 22.0299 6.875 27.5 6.875C32.9701 6.875 38.2161 9.04799 42.0841 12.9159C45.952 16.7839 48.125 22.0299 48.125 27.5Z" stroke="#9C9C9C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
+                        <div className='profile-info-body'>
+                            <h3>{friend?.name} {friend?.surname || ''}</h3>
                             <p>Offline</p>
                         </div>
+                        <svg className='svg_50 close-profile' onClick={handleProfile} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 37.5L37.5 12.5M12.5 12.5L37.5 37.5" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
                     <p className='profile-email'>{friend?.email}</p>
                     <button className='profile-delete-friend' onClick={() => {deleteFriend(friend?.email); setIsOpened(false)}}>

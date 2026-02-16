@@ -80,8 +80,8 @@ function Settings() {
 
     return (
         <>
-            <Header />
-            <div className='wrapper'>
+            {/* <Header />
+            <div className='wrapper'> */}
                 <Nav page='settings' />
                 <div className='page'>
                     <div className='settings'>
@@ -116,7 +116,7 @@ function Settings() {
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

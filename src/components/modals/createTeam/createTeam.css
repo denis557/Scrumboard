@@ -18,8 +18,9 @@
 }
 
 .modal_create_board {
-    width: 36.4583vw;
-    height: 34.4149vh;
+    width: 34.11vw;
+    height: 30.49vh;
+    padding: 1.96vh 1.04vw 1.96vh 1.3vw; 
     max-height: 420px;
     background-color: #fff;
     position: fixed;
@@ -32,7 +33,8 @@
     flex-direction: row;
     width: 34.1145vw;
     height: 6.9813vh;
-    margin: 1.96656vh 1.0416vw 0 1.30208vw;
+    /* margin: 1.96656vh 1.0416vw 0 1.30208vw; */
+    /* margin: 1.96656vh 0 0 0; */
     /* justify-content: center; */
     align-items: flex-start;
 }
@@ -49,7 +51,8 @@
 }
 
 .modal_create_separator {
-    width: 92.857%;
+    /* width: 92.857%; */
+    width: 100%;
     border: none;
     height: 1px;
     background-color: #6C6C6C;
@@ -71,11 +74,13 @@
     background-color: transparent;
     /* border-radius: 3px; */
     border-radius: 0.15625vw;
-    margin: 1.4749vh 0 2.9498vh 2.60416vw;
+    /* margin: 1.4749vh 0 2.9498vh 2.60416vw; */
+    margin: 1.4749vh 0 2.9498vh 0;
     outline: none;
     /* font-size: 32px; */
     font-size: 1.666vw;
     font-weight: 300;
+    align-self: center;
 }
 
 .modal_create_submit {

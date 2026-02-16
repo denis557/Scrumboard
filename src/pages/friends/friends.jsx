@@ -13,6 +13,7 @@ import Profile from '../../components/modals/profile/profile.jsx';
 function Friends() {
 
     const [selectedFriend, setSelectedFriend] = useState(null);
+    const [searchInput, setSearchInput] = useState('');
 
     const friendsContextMenuRef = useRef(null);
     const menuJustOpened = useRef(false);
@@ -138,35 +139,35 @@ function Friends() {
 
     return (
         <>
-            <Header />
-            <div className='wrapper'>
                 <Nav page='friends' handleAddFriend={handleOpenAddFriend} />
                 <div className='page'>
+                    <input className='friend_search' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
                     <div className='friends'>
-                        <div className='friends_header'>
-                            <p className='friend_header_title friend_header_name'>Name</p>
-                            <hr className='vertical_rule' />
-                            <p className='friend_header_title friend_header_email'>Email</p>
-                            <hr className='vertical_rule' />
-                            <p className='friend_header_title friend_header_status'>Status</p>
-                        </div>
-                        {friendsInfo?.map((friend, index) => (
+                        {!searchInput ? 
+                        friendsInfo?.map((friend, index) => (
                         <React.Fragment key={friend?._id}>
-                            <div className='friend' onContextMenu={(e) => handleContextMenu(e, friend)} onClick={(e) => handleContextMenu(e, friend)}>
-                                <div className='friend_body_name'>
-                                    <div className='friend_avatar' style={{background: `linear-gradient(to bottom left, ${friend?.gradient[0]}, ${friend?.gradient[1]}`}}>{getInitial(friend?.name)}</div>
-                                    <p className='friend_name'>{friend?.name} {friend?.surname || ''}</p>
-                                </div>
-                                <div className='friend_body_email'><p className='friend_email'>{friend?.email}</p></div>
-                                <div className='friend_body_status'>
-                                    <div className='friend_status'>
-                                        <svg className='svg_50' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20.3125 20.3125L29.6875 29.6875M29.6875 20.3125L20.3125 29.6875M43.75 25C43.75 27.4623 43.265 29.9005 42.3227 32.1753C41.3805 34.4502 39.9993 36.5172 38.2582 38.2582C36.5172 39.9993 34.4502 41.3805 32.1753 42.3227C29.9005 43.265 27.4623 43.75 25 43.75C22.5377 43.75 20.0995 43.265 17.8247 42.3227C15.5498 41.3805 13.4828 39.9993 11.7417 38.2582C10.0006 36.5172 8.61953 34.4502 7.67726 32.1753C6.73498 29.9005 6.25 27.4623 6.25 25C6.25 20.0272 8.22544 15.2581 11.7417 11.7417C15.2581 8.22544 20.0272 6.25 25 6.25C29.9728 6.25 34.7419 8.22544 38.2582 11.7417C41.7746 15.2581 43.75 20.0272 43.75 25Z" stroke="#9C9C9C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
-                                        <p className='status_title'>Offline</p>
-                                    </div>
+                            <div className='friend' onContextMenu={(e) => handleContextMenu(e, friend)} onClick={() => handleProfile(friend)}>
+                                <div className='friend_avatar' style={{background: `linear-gradient(to bottom left, ${friend?.gradient[0]}, ${friend?.gradient[1]}`}}>{getInitial(friend?.name)}</div>
+                                <div className='friend_body'>
+                                    <p className='friend_name_body'>{friend?.name} {friend?.surname || ''}</p>
+                                    <p className='friend_status_body'>Offline</p>
                                 </div>
                             </div>
-                            <hr className='friend_separator' />
-                        </React.Fragment>))}
+                        </React.Fragment>))
+                        :
+                        friendsInfo?.map((friend, index) => {
+                            if(friend?.name.toLowerCase().includes(searchInput.toLowerCase())) {
+                                return <React.Fragment key={friend?._id}>
+                                    <div className='friend' onContextMenu={(e) => handleContextMenu(e, friend)} onClick={() => handleProfile(friend)}>
+                                        <div className='friend_avatar' style={{background: `linear-gradient(to bottom left, ${friend?.gradient[0]}, ${friend?.gradient[1]}`}}>{getInitial(friend?.name)}</div>
+                                        <div className='friend_body'>
+                                            <p className='friend_name_body'>{friend?.name} {friend?.surname || ''}</p>
+                                            <p className='friend_status_body'>Offline</p>
+                                        </div>
+                                    </div>
+                                </React.Fragment>
+                            }
+                        })}
                         <FriendsContextMenu 
                             friendsContextMenuRef={friendsContextMenuRef}
                             isOpened={contextMenu.opened}
@@ -188,7 +189,6 @@ function Friends() {
                         />
                     </div>
                 </div>
-            </div>
             {isAddFriendOpened && <AddFriendModal handleAddFriend={handleOpenAddFriend} getAllFriends={getAllFriends} />}
             {isProfile && <Profile handleProfile={handleProfile} friend={selectedFriend} getAllFriends={getAllFriends} deleteFriend={deleteFriend} setIsOpened={setIsProfile} />}
         </>

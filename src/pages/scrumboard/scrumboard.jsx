@@ -223,8 +223,8 @@ function Scrumboard() {
 
     return (
         <>
-            <Header />
-            <div className='wrapper'>
+            {/* <Header /> */}
+            {/* <div className='wrapper'> */}
                 <Nav page="scrumboard" toggleIsCreateModal={toggleIsCreateModal} toggleIsJoinModal={toggleIsJoinModal} getTeamInfo={getTeamInfo} toggleIsList={toggleIsList} isList={isList} isTeamBoard={isTeamBoard} />
                 <div className={`page${isList ? '_list' : '_board'}`}>
                     <div className={`board_body${isList ? '_list' : ''}`}>
@@ -332,7 +332,7 @@ function Scrumboard() {
                     </>))}
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             <BlockContextMenu 
                 blockContextMenuRef={blockContextMenuRef}
                 isToggled={blockContextMenu.toggled}

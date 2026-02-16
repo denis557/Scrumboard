@@ -6,6 +6,7 @@ import TeamContextMenu from '../contextMenus/teamContextMenu/teamContextMenu.jsx
 import { UserContext } from '../../contexts/userContext.jsx';
 import AllMembersPopup from '../../components/modals/allMembers/allMembers.jsx';
 import axiosInstance from '../../helpers/axiosInstance.js';
+import { getInitial } from '../../helpers/getInitial';
 
 function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, getTeamInfo, toggleIsList, isList, isTeamBoard }) {
     const [isTeamOpened, setIsTeamOpened] = useState(false);
@@ -249,7 +250,7 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                             (<p>Loading teams....</p>)}
                     </>
                 }
-                <div className='nav_button add_join_team_buttons'>
+                <div className='nav_button_team_actions add_join_team_buttons'>
                     <button className='team_button' onClick={toggleIsCreateModal}>
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 7.5V32.5M32.5 20H7.5" stroke="#0057FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> </svg>
                         <p className='create_team_btn_p'>Create</p>
@@ -267,6 +268,12 @@ function Nav({ page, handleAddFriend, toggleIsCreateModal, toggleIsJoinModal, ge
                     <p className='nav_button_title'>Add friend</p>
                 </div>
             }
+            <Link to='/settings' className='user_link'>
+                <div className='header_settings_link' style={{background: `linear-gradient(to bottom left, ${userInfo?.gradient[0]}, ${userInfo?.gradient[1]}`}}>
+                    <p className='header_avatar_p'>{getInitial(userInfo?.name)}</p>
+                </div>
+                <h1>{userInfo?.name}</h1>
+            </Link>
             <TeamContextMenu 
                 teamContextRef={teamContextRef}
                 isToggled={teamContextMenu.toggled}

@@ -1,6 +1,9 @@
 .addBlock_modal {
-    width: 36.4583vw;
-    height: 34.4149vh;
+    /* width: 36.4583vw; */
+    /* height: 34.41vh; */
+    width: 34.11vw;
+    height: 30.49vh;
+    padding: 1.96vh 1.04vw 1.96vh 1.3vw; 
     max-height: 420px;
     background-color: #fff;
     position: fixed;

@@ -6,7 +6,9 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-direction: row;
+    flex: 1;
     overflow: hidden;
 }
 
@@ -45,8 +47,8 @@
 }
 
 .wrapper {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
 }

@@ -19,7 +19,7 @@
 
 .profile {
     height: 100%;
-    width: 41.6666%;
+    width: 33.85vw;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -42,11 +42,22 @@
 
 .profile-user-info {
     width: 100%;
-    height: 20%;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: 3.5%;
+    margin-top: 2.45vh;
+}
+
+.profile-info-body {
+    /* height: 100%; */
+    /* width: 100%; */
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    margin: 0 0 0 2%;
 }
 
 .profile-avatar {
@@ -67,7 +78,7 @@
     /* font-size: 48px; */
     font-size: 2.5vw;
     font-weight: 400;
-    margin: 0 4.25% 0 2%;
+    /* margin: 0 4.25% 0 2%; */
 }
 
 .profile-status {
@@ -84,22 +95,20 @@
     border-radius: 0.15625vw;
 }
 
-.profile-status p {
-    /* font-size: 34px; */
-    font-size: 1.77083vw;
-    width: fit-content;
-    margin-right: 8px;
+.profile-info-body p {
+    font-size: 1.3vw;
 }
 
 .profile-email {
     /* font-size: 40px; */
-    font-size: 2.083vw;
+    font-size: 1.875vw;
     margin-left: 3.5%;
+    margin-top: 1.47vh;
     flex-grow: 1;
 }
 
 .profile-delete-friend {
-    width: 31.25%;
+    width: 13vw;
     height: 6.88vh;
     background-color: transparent;
     /* border-radius: 3px; */
@@ -118,6 +127,12 @@
 
 .profile-delete-friend svg {
     margin: 0 2%;
+}
+
+.close-profile {
+    align-self: flex-start;
+    margin-left: auto;
+    margin-right: 1.4vw;
 }
 
 .svg_55 {
